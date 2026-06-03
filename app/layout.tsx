@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Nav from "@/components/nav";
 import Footer from "@/components/footer";
@@ -6,16 +6,41 @@ import SWRegister from "@/components/sw-register";
 import { I18nProvider } from "@/lib/i18n";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://roam-explorer.autozyx.com"),
   title: "ROAM Explorer — L4 Robotaxi Incident Database",
   description:
     "Interactive explorer for the ROAM open-source database of L4+ robotaxi operational anomalies, scenario taxonomy, and reference architecture.",
   manifest: "/manifest.json",
-  themeColor: "#c85a3a",
+  openGraph: {
+    title: "ROAM Explorer — L4 Robotaxi Incident Database",
+    description:
+      "Interactive explorer for the ROAM open-source database of L4+ robotaxi operational anomalies, scenario taxonomy, and reference architecture.",
+    url: "https://roam-explorer.autozyx.com/",
+    siteName: "ROAM Explorer",
+    images: [
+      {
+        url: "https://roam.autozyx.com/assets/logo.png",
+        alt: "ROAM logo",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ROAM Explorer — L4 Robotaxi Incident Database",
+    description:
+      "Interactive explorer for the ROAM open-source database of L4+ robotaxi operational anomalies, scenario taxonomy, and reference architecture.",
+    images: ["https://roam.autozyx.com/assets/logo.png"],
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
     title: "ROAM Explorer",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#c85a3a",
 };
 
 export default function RootLayout({
