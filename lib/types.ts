@@ -3,9 +3,13 @@ export type Urgency = "U0" | "U1" | "U2" | "U3";
 
 export interface Location {
   city: string;
+  city_cn?: string;
   country?: string;
+  country_cn?: string;
   road_type?: string;
+  road_type_cn?: string;
   specific?: string;
+  specific_cn?: string;
 }
 
 export interface Scenario {
@@ -17,15 +21,20 @@ export interface Impact {
   vehicles_affected?: number;
   duration_minutes?: number | null;
   traffic_disruption?: string;
+  traffic_disruption_cn?: string;
   injuries?: number;
   fatalities?: number;
 }
 
 export interface EmergencyResponse {
   sos_button?: string;
+  sos_button_cn?: string;
   customer_service?: string;
+  customer_service_cn?: string;
   remote_intervention?: string;
+  remote_intervention_cn?: string;
   on_site_response?: string;
+  on_site_response_cn?: string;
   resolution_method?: string;
   resolution_method_cn?: string;
 }
@@ -41,6 +50,7 @@ export interface RootCause {
 export interface Source {
   url: string;
   title: string;
+  title_cn?: string;
 }
 
 export type Tier = 1 | 2 | 3;

@@ -2,7 +2,11 @@
 
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
-type Lang = "en" | "zh";
+export type Lang = "en" | "zh";
+
+const DEFAULT_LANG: Lang = "zh";
+const LANG_STORAGE_KEY = "roam-lang-v2";
+const LEGACY_LANG_STORAGE_KEY = "roam-lang";
 
 const translations = {
   // Nav — 与 roam.autozyx.com 一致
@@ -72,7 +76,7 @@ const translations = {
   "detail.fatalities": { en: "Fatalities", zh: "死亡" },
   "detail.traffic": { en: "Traffic disruption", zh: "交通影响" },
   "detail.emergency": { en: "EMERGENCY RESPONSE", zh: "应急响应" },
-  "detail.sos": { en: "SOS Button", zh: "SOS按钮" },
+  "detail.sos": { en: "SOS Button", zh: "SOS 按钮" },
   "detail.customerService": { en: "Customer Service", zh: "客服响应" },
   "detail.remoteIntervention": { en: "Remote Intervention", zh: "远程干预" },
   "detail.onSite": { en: "On-Site Response", zh: "现场处置" },
@@ -171,22 +175,32 @@ interface I18nContextType {
 }
 
 const I18nContext = createContext<I18nContextType>({
-  lang: "en",
+  lang: DEFAULT_LANG,
   setLang: () => {},
-  t: (key) => translations[key]?.en ?? key,
+  t: (key) => translations[key]?.[DEFAULT_LANG] ?? key,
 });
 
+function getInitialLang(): Lang {
+  if (typeof window === "undefined") return DEFAULT_LANG;
+
+  const saved = localStorage.getItem(LANG_STORAGE_KEY) as Lang | null;
+  const legacySaved = localStorage.getItem(LEGACY_LANG_STORAGE_KEY) as Lang | null;
+  if (saved === "zh" || saved === "en") return saved;
+  if (legacySaved === "zh") return "zh";
+  return DEFAULT_LANG;
+}
+
 export function I18nProvider({ children }: { children: ReactNode }) {
-  const [lang, setLangState] = useState<Lang>("en");
+  const [lang, setLangState] = useState<Lang>(getInitialLang);
 
   useEffect(() => {
-    const saved = localStorage.getItem("roam-lang") as Lang;
-    if (saved === "zh" || saved === "en") setLangState(saved);
-  }, []);
+    document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
+  }, [lang]);
 
   const setLang = (l: Lang) => {
     setLangState(l);
-    localStorage.setItem("roam-lang", l);
+    localStorage.setItem(LANG_STORAGE_KEY, l);
+    localStorage.setItem(LEGACY_LANG_STORAGE_KEY, l);
   };
 
   const t = (key: TranslationKey) => translations[key]?.[lang] ?? key;

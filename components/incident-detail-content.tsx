@@ -7,6 +7,15 @@ import UrgencyBadge from "./urgency-badge";
 import ScenarioTag from "./scenario-tag";
 import Link from "next/link";
 import { generateGbImmediateReport } from "@/lib/gb-report";
+import {
+  getEmergencyResponseDisplay,
+  getImpactDisplay,
+  getIncidentDescription,
+  getIncidentTitle,
+  getLocationParts,
+  getContributorDisplay,
+  getSourceTitle,
+} from "@/lib/localized-incident";
 
 export default function IncidentDetailContent({
   incident,
@@ -20,29 +29,39 @@ export default function IncidentDetailContent({
   const sectionTitle =
     "text-sm font-semibold text-[var(--muted)] uppercase tracking-wider mb-2";
 
-  const desc = zh && incident.description_cn
-    ? incident.description_cn.trim()
-    : incident.description.trim();
+  const desc = getIncidentDescription(incident, zh);
+  const location = getLocationParts(incident.location, zh);
+  const impactDisplay = getImpactDisplay(incident.impact, zh);
+  const emergencyDisplay = getEmergencyResponseDisplay(
+    incident.emergency_response,
+    zh,
+  );
 
   const rootCategory = zh && incident.root_cause?.category_cn
     ? incident.root_cause.category_cn
-    : incident.root_cause?.category;
+    : zh && incident.root_cause?.category
+      ? "根因类别待人工中文校核"
+      : incident.root_cause?.category;
 
   const rootDesc = zh && incident.root_cause?.description_cn
     ? incident.root_cause.description_cn
-    : incident.root_cause?.description;
+    : zh && incident.root_cause?.description
+      ? "根因描述尚未完成人工中文校核；可切换到 EN 查看英文原文。"
+      : incident.root_cause?.description;
 
-  const systemicList = zh && incident.systemic_issues_cn?.length
-    ? incident.systemic_issues_cn
+  const systemicList = zh
+    ? incident.systemic_issues_cn?.length
+      ? incident.systemic_issues_cn
+      : incident.systemic_issues?.length
+        ? ["系统性问题尚未完成人工中文校核；可切换到 EN 查看英文原文。"]
+        : undefined
     : incident.systemic_issues;
 
   const regAction = zh && incident.regulatory_action_cn
     ? incident.regulatory_action_cn.trim()
-    : incident.regulatory_action?.trim();
-
-  const resMethod = zh && incident.emergency_response?.resolution_method_cn
-    ? incident.emergency_response.resolution_method_cn
-    : incident.emergency_response?.resolution_method;
+    : zh && incident.regulatory_action
+      ? "监管行动尚未完成人工中文校核；可切换到 EN 查看英文原文。"
+      : incident.regulatory_action?.trim();
 
   function downloadGbReport() {
     const md = generateGbImmediateReport(incident);
@@ -83,7 +102,7 @@ export default function IncidentDetailContent({
               {incident.id}
             </span>
             <h1 className="text-2xl mt-1">
-              {incident.operator} &mdash; {incident.location.city}
+              {getIncidentTitle(incident, zh)}
             </h1>
           </div>
           <div className="text-right text-sm text-[var(--muted)]">
@@ -106,13 +125,12 @@ export default function IncidentDetailContent({
         <div className={section}>
           <h3 className={sectionTitle}>{t("detail.location")}</h3>
           <p className="text-sm">
-            {incident.location.city}
-            {incident.location.road_type &&
-              ` \u2014 ${incident.location.road_type.replace(/_/g, " ")}`}
+            {location.city}
+            {location.roadType && ` \u2014 ${location.roadType}`}
           </p>
-          {incident.location.specific && (
+          {location.specific && (
             <p className="text-sm text-[var(--muted)]">
-              {incident.location.specific}
+              {location.specific}
             </p>
           )}
         </div>
@@ -153,9 +171,9 @@ export default function IncidentDetailContent({
                 </div>
               )}
             </div>
-            {incident.impact.traffic_disruption && (
+            {impactDisplay.trafficDisruption && (
               <p className="text-sm mt-2 text-[var(--muted)]">
-                {t("detail.traffic")}: {incident.impact.traffic_disruption}
+                {t("detail.traffic")}: {impactDisplay.trafficDisruption}
               </p>
             )}
           </div>
@@ -166,35 +184,35 @@ export default function IncidentDetailContent({
           <div className={section}>
             <h3 className={sectionTitle}>{t("detail.emergency")}</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
-              {incident.emergency_response.sos_button && (
+              {emergencyDisplay.sosButton && (
                 <div>
                   <span className="text-[var(--muted)]">{t("detail.sos")}: </span>
-                  {incident.emergency_response.sos_button}
+                  {emergencyDisplay.sosButton}
                 </div>
               )}
-              {incident.emergency_response.customer_service && (
+              {emergencyDisplay.customerService && (
                 <div>
                   <span className="text-[var(--muted)]">{t("detail.customerService")}: </span>
-                  {incident.emergency_response.customer_service}
+                  {emergencyDisplay.customerService}
                 </div>
               )}
-              {incident.emergency_response.remote_intervention && (
+              {emergencyDisplay.remoteIntervention && (
                 <div>
                   <span className="text-[var(--muted)]">{t("detail.remoteIntervention")}: </span>
-                  {incident.emergency_response.remote_intervention}
+                  {emergencyDisplay.remoteIntervention}
                 </div>
               )}
-              {incident.emergency_response.on_site_response && (
+              {emergencyDisplay.onSiteResponse && (
                 <div>
                   <span className="text-[var(--muted)]">{t("detail.onSite")}: </span>
-                  {incident.emergency_response.on_site_response}
+                  {emergencyDisplay.onSiteResponse}
                 </div>
               )}
             </div>
-            {resMethod && (
+            {emergencyDisplay.resolutionMethod && (
               <p className="text-sm mt-2">
                 <span className="text-[var(--muted)]">{t("detail.resolution")}: </span>
-                {resMethod}
+                {emergencyDisplay.resolutionMethod}
               </p>
             )}
           </div>
@@ -247,7 +265,7 @@ export default function IncidentDetailContent({
                     rel="noopener noreferrer"
                     className="text-[var(--accent)] hover:underline"
                   >
-                    {src.title}
+                    {getSourceTitle(src, zh)}
                   </a>
                 </li>
               ))}
@@ -257,7 +275,7 @@ export default function IncidentDetailContent({
 
         {/* Metadata */}
         <div className="pt-4 border-t border-[var(--border)] text-xs text-[var(--muted)] flex flex-wrap gap-4">
-          {incident.contributor && <span>{zh ? "贡献者" : "Contributor"}: {incident.contributor}</span>}
+          {incident.contributor && <span>{zh ? "贡献者" : "Contributor"}: {getContributorDisplay(incident.contributor, zh)}</span>}
           {incident.last_updated && <span>{zh ? "更新时间" : "Updated"}: {incident.last_updated}</span>}
         </div>
       </div>

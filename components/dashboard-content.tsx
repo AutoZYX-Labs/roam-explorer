@@ -15,7 +15,7 @@ const IncidentMap = dynamic(() => import("./incident-map"), {
   ssr: false,
   loading: () => (
     <div className="h-[400px] rounded-xl border border-[var(--border)] bg-[var(--card-bg)] flex items-center justify-center">
-      <p className="text-[var(--muted)] text-sm">Loading map...</p>
+      <p className="text-[var(--muted)] text-sm">地图加载中...</p>
     </div>
   ),
 });
@@ -52,8 +52,8 @@ export default function DashboardContent({
               </p>
               <p className="text-sm text-[var(--muted)]">
                 {lang === "zh"
-                  ? "用自然语言查询 567 条事件库、27 个场景分类、参考架构与 KPI。中英文均可。"
-                  : "Query 567 incidents, 27 scenarios, architecture & KPIs in plain English or Chinese."}
+                  ? `用自然语言查询 ${stats.totalIncidents} 条事件库、${stats.totalScenarios} 个场景分类、参考架构与 KPI。中英文均可。`
+                  : `Query ${stats.totalIncidents} incidents, ${stats.totalScenarios} scenarios, architecture & KPIs in plain English or Chinese.`}
               </p>
             </div>
           </div>
