@@ -8,6 +8,7 @@ import { geocode } from "@/lib/geocoding";
 import { useI18n } from "@/lib/i18n";
 import { SEVERITY_CONFIG } from "@/lib/constants";
 import Link from "next/link";
+import { localizeCity } from "@/lib/localized-incident";
 
 interface ClusterBubble {
   city: string;
@@ -93,8 +94,10 @@ export default function IncidentMap({ incidents, compact = false }: { incidents:
           >
             <Popup>
               <div className="text-xs">
-                <p className="font-semibold">{c.city.replace(", USA", "")}</p>
-                <p>{c.count} incidents</p>
+                <p className="font-semibold">
+                  {zh ? localizeCity(c.city, true) : c.city.replace(", USA", "")}
+                </p>
+                <p>{zh ? `${c.count} 条事件` : `${c.count} incidents`}</p>
               </div>
             </Popup>
           </CircleMarker>
@@ -134,7 +137,9 @@ export default function IncidentMap({ incidents, compact = false }: { incidents:
             >
               <Popup>
                 <div className="text-xs" style={{ minWidth: "220px" }}>
-                  <p className="font-semibold text-sm mb-1">{c.city.replace(", USA", "")}</p>
+                  <p className="font-semibold text-sm mb-1">
+                    {zh ? localizeCity(c.city, true) : c.city.replace(", USA", "")}
+                  </p>
                   <p className="mb-2">
                     {zh ? "事件总数：" : "Incidents: "}
                     <strong>{c.count}</strong>
