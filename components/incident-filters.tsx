@@ -4,9 +4,15 @@ import { useState, useMemo } from "react";
 import type { Incident } from "@/lib/types";
 import IncidentCard from "./incident-card";
 import { useI18n } from "@/lib/i18n";
+import {
+  getIncidentDescription,
+  getIncidentTitle,
+  localizeOperator,
+} from "@/lib/localized-incident";
 
 export default function IncidentFilters({ incidents }: { incidents: Incident[] }) {
   const { t, lang } = useI18n();
+  const zh = lang === "zh";
   const [search, setSearch] = useState("");
   const [operator, setOperator] = useState<string>("");
   const [severity, setSeverity] = useState<string>("");
@@ -22,7 +28,23 @@ export default function IncidentFilters({ incidents }: { incidents: Incident[] }
     return incidents.filter((inc) => {
       if (tier === "1" && inc.tier !== 1) return false;
       if (tier === "2" && inc.tier !== 2) return false;
-      if (search && !inc.description.toLowerCase().includes(search.toLowerCase()) && !inc.id.toLowerCase().includes(search.toLowerCase())) return false;
+      if (search) {
+        const query = search.toLowerCase();
+        const searchable = [
+          inc.id,
+          inc.description,
+          inc.description_cn,
+          inc.operator,
+          localizeOperator(inc.operator, true),
+          inc.location?.city,
+          getIncidentTitle(inc, true),
+          getIncidentDescription(inc, true),
+        ]
+          .filter(Boolean)
+          .join(" ")
+          .toLowerCase();
+        if (!searchable.includes(query)) return false;
+      }
       if (operator && inc.operator !== operator) return false;
       if (severity && inc.severity !== severity) return false;
       if (category && inc.scenario.primary.charAt(0) !== category) return false;
@@ -46,7 +68,7 @@ export default function IncidentFilters({ incidents }: { incidents: Incident[] }
         />
         <select value={operator} onChange={(e) => setOperator(e.target.value)} className={selClass}>
           <option value="">{t("inc.allOperators")}</option>
-          {operators.map((o) => <option key={o} value={o}>{o}</option>)}
+          {operators.map((o) => <option key={o} value={o}>{localizeOperator(o, zh)}</option>)}
         </select>
         <select value={severity} onChange={(e) => setSeverity(e.target.value)} className={selClass}>
           <option value="">{t("inc.allSeverity")}</option>

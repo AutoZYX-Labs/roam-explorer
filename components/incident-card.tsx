@@ -6,13 +6,15 @@ import { useI18n } from "@/lib/i18n";
 import SeverityBadge from "./severity-badge";
 import UrgencyBadge from "./urgency-badge";
 import ScenarioTag from "./scenario-tag";
+import {
+  getIncidentDescription,
+  getIncidentTitle,
+} from "@/lib/localized-incident";
 
 export default function IncidentCard({ incident }: { incident: Incident }) {
   const { lang } = useI18n();
-  const rawDesc =
-    lang === "zh" && incident.description_cn
-      ? incident.description_cn
-      : incident.description;
+  const zh = lang === "zh";
+  const rawDesc = getIncidentDescription(incident, zh);
   const desc =
     rawDesc.length > 140 ? rawDesc.substring(0, 140).trim() + "..." : rawDesc;
 
@@ -38,7 +40,7 @@ export default function IncidentCard({ incident }: { incident: Incident }) {
         <span className="text-xs text-[var(--muted)]">{incident.date}</span>
       </div>
       <p className="font-medium text-sm text-[var(--text)] mb-2">
-        {incident.operator} &mdash; {incident.location.city}
+        {getIncidentTitle(incident, zh)}
       </p>
       <div className="flex flex-wrap gap-1.5 mb-3">
         <SeverityBadge severity={incident.severity} />

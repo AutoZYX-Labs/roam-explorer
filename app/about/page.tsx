@@ -28,8 +28,8 @@ export default function AboutPage() {
             </p>
             <p className="text-[var(--muted)]">
               {zh
-                ? "高影响力的标志性事件，由团队人工分析，包含完整的场景分类、严重度/紧急度评估、根因分析、系统性问题、监管影响、中英文双语。当前 16 条。"
-                : "Landmark events manually curated with full scenario classification, severity/urgency rating, root cause analysis, systemic issues, regulatory response, and bilingual EN/CN content. Currently 16 records."}
+                ? "高影响力的标志性事件，由团队人工分析，包含完整的场景分类、严重度/紧急度评估、根因分析、系统性问题、监管影响和中英文双语内容。"
+                : "Landmark events manually curated with full scenario classification, severity/urgency rating, root cause analysis, systemic issues, regulatory response, and bilingual EN/CN content."}
             </p>
           </div>
           <div className="rounded-lg border border-[var(--border)] bg-[var(--card-bg)] p-4">
@@ -38,8 +38,8 @@ export default function AboutPage() {
             </p>
             <p className="text-[var(--muted)]">
               {zh
-                ? "从加州 DMV 自动驾驶车辆碰撞报告（Form OL 316）批量提取，覆盖 2019-2026 年。使用文本解析 + 场景自动分类，保留原始 PDF 链接可追溯。已过滤 229 条处于手动/常规驾驶模式的报告。当前 551 条。"
-                : "Bulk-imported from California DMV Autonomous Vehicle Collision Reports (Form OL 316), 2019-2026. Text parsing + rule-based scenario classification with full traceability to the original PDF. 229 manual/conventional mode reports filtered out. Currently 551 records."}
+                ? "从加州 DMV 自动驾驶车辆碰撞报告（Form OL 316）批量提取，覆盖 2019-2026 年。使用文本解析 + 场景自动分类，保留原始 PDF 链接可追溯。已过滤处于手动/常规驾驶模式的报告；当前数量以事件库实时统计为准。"
+                : "Bulk-imported from California DMV Autonomous Vehicle Collision Reports (Form OL 316), 2019-2026. Text parsing + rule-based scenario classification with full traceability to the original PDF. Manual/conventional mode reports are filtered out; current counts are shown in the incident database."}
             </p>
           </div>
           <div className="rounded-lg border border-[var(--border)] bg-[var(--card-bg)] p-4 opacity-70">
@@ -156,8 +156,9 @@ export default function AboutPage() {
   author={Zhang, Yuxin},
   year={2026},
   howpublished={\\url{https://roam.autozyx.com}},
-  note={Open-source framework with 567+ incidents,
-        27-scenario taxonomy, three-layer architecture}
+  note={Open-source framework with a continuously updated
+        incident database, scenario taxonomy,
+        three-layer architecture}
 }`}
         </pre>
       </section>
