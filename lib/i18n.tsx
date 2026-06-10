@@ -23,7 +23,7 @@ const translations = {
   "nav.framework": { en: "Framework", zh: "理论框架" },
   "fw.title": { en: "ROAM Framework", zh: "ROAM 理论框架" },
   "fw.desc": {
-    en: "The theoretical foundation: scenario taxonomy, three-layer reference architecture, and 8 KPIs for evaluating robotaxi remote operations platforms.",
+    en: "The theoretical foundation: scenario taxonomy, three-layer reference architecture, and 8 KPIs for evaluating L4 remote operations platforms.",
     zh: "ROAM 的理论基础：场景分类体系、三层参考架构、8 个评估 KPI。",
   },
   "fw.tab.taxonomy": { en: "Taxonomy", zh: "场景分类" },
@@ -34,8 +34,8 @@ const translations = {
   // Dashboard
   "dash.title": { en: "ROAM Explorer", zh: "ROAM 交互式探索" },
   "dash.desc": {
-    en: "Open-source incident database, scenario taxonomy & reference architecture for L4 robotaxi remote operations.",
-    zh: "开源事件数据库、场景分类体系与参考架构，面向 L4 Robotaxi 远程运营。",
+    en: "Open-source incident database, scenario taxonomy & reference architecture for L4 remote operations.",
+    zh: "开源事件数据库、场景分类体系与参考架构，面向 L4 自动驾驶远程运营。",
   },
   "dash.totalIncidents": { en: "Incidents", zh: "事件记录" },
   "dash.operators": { en: "Operators", zh: "运营商" },
@@ -54,8 +54,8 @@ const translations = {
   // Incidents page
   "inc.title": { en: "Incidents", zh: "事件库" },
   "inc.desc": {
-    en: "All documented L4 robotaxi operational anomalies in the ROAM database.",
-    zh: "ROAM 数据库中所有已记录的 L4 Robotaxi 运营异常事件。",
+    en: "All documented L4 remote-operations anomalies in the ROAM database.",
+    zh: "ROAM 数据库中所有已记录的 L4 远程运营异常事件。",
   },
   "inc.search": { en: "Search incidents...", zh: "搜索事件..." },
   "inc.allOperators": { en: "All Operators", zh: "全部运营商" },
@@ -91,8 +91,8 @@ const translations = {
   // Taxonomy — 与 roam.autozyx.com "场景分类" 一致
   "tax.title": { en: "Scenario Taxonomy", zh: "场景分类体系" },
   "tax.desc": {
-    en: "6 categories, 27 sub-scenarios classifying all known L4 robotaxi operational anomalies. Each maps to a recommended response layer (1/2/3).",
-    zh: "6大类、27个子场景，覆盖所有已知 L4 Robotaxi 运营异常。每个场景映射到推荐的响应层级（1/2/3）。",
+    en: "6 categories, 27 sub-scenarios classifying known L4 remote-operations anomalies. Each maps to a recommended response layer (1/2/3).",
+    zh: "6大类、27个子场景，覆盖已知 L4 远程运营异常。每个场景映射到推荐的响应层级（1/2/3）。",
   },
   "tax.incident": { en: "incident", zh: "条事件" },
   "tax.incidents": { en: "incidents", zh: "条事件" },
@@ -106,8 +106,8 @@ const translations = {
   // Architecture — 与 roam.autozyx.com "参考架构：三层决策模型" 一致
   "arch.title": { en: "Reference Architecture", zh: "参考架构：三层决策模型" },
   "arch.desc": {
-    en: "Three-layer decision model for handling L4 robotaxi operational anomalies. Core principle: AI handles routine anomalies autonomously; humans handle the exceptions.",
-    zh: "L4 Robotaxi 运营异常三层决策模型。核心原则：AI 自主处理常规异常，人类处理例外情况。",
+    en: "Three-layer decision model for handling L4 remote-operations anomalies. Core principle: AI handles routine anomalies autonomously; humans handle the exceptions.",
+    zh: "L4 远程运营异常三层决策模型。核心原则：AI 自主处理常规异常，人类处理例外情况。",
   },
   "arch.latency": { en: "Latency", zh: "响应时间" },
   "arch.humanRole": { en: "Human role", zh: "人员角色" },
@@ -123,8 +123,8 @@ const translations = {
   // KPIs — 与 roam.autozyx.com "评估基准" 一致
   "kpi.title": { en: "KPI Definitions", zh: "评估基准：KPI 定义" },
   "kpi.desc": {
-    en: "8 key performance indicators for evaluating robotaxi remote operations platforms. Measurable, comparable across operators, and actionable.",
-    zh: "8个关键绩效指标，用于评估 Robotaxi 远程运营平台。可量化、可跨运营商对比、可执行。",
+    en: "8 key performance indicators for evaluating L4 remote operations platforms. Measurable, comparable across operators, and actionable.",
+    zh: "8个关键绩效指标，用于评估 L4 远程运营平台。可量化、可跨运营商对比、可执行。",
   },
   "kpi.category": { en: "Category", zh: "类别" },
   "kpi.target": { en: "Target", zh: "目标值" },
@@ -133,11 +133,11 @@ const translations = {
   // Ask ROAM
   "ask.title": { en: "Ask ROAM", zh: "智能问答" },
   "ask.desc": {
-    en: "Ask questions about robotaxi incidents, scenarios, architecture, and KPIs. Powered by Claude with the full ROAM database as context.",
+    en: "Ask questions about L4 remote-operations incidents, scenarios, architecture, and KPIs. Powered by Claude with the full ROAM database as context.",
     zh: "向 ROAM 数据库提问：事件、场景分类、架构、KPI。基于 Claude AI，以完整数据库为上下文。",
   },
   "ask.try": { en: "Try one of these questions:", zh: "试试这些问题：" },
-  "ask.placeholder": { en: "Ask about robotaxi incidents...", zh: "输入你的问题..." },
+  "ask.placeholder": { en: "Ask about L4 remote-operations incidents...", zh: "输入你的问题..." },
   "ask.button": { en: "Ask", zh: "提问" },
   "ask.thinking": { en: "Thinking...", zh: "思考中..." },
   "ask.clear": { en: "New chat", zh: "新对话" },
@@ -159,8 +159,8 @@ const translations = {
   },
 
   // Footer — 与 roam.autozyx.com 底部一致
-  "footer.desc": { en: "Remote Operations Anomaly Management", zh: "Robotaxi 运营异常管理" },
-  "footer.open": { en: "Open-source L4 robotaxi incident database", zh: "开源 L4 Robotaxi 事件数据库" },
+  "footer.desc": { en: "Remote Operations & Anomaly Management", zh: "远程运营与异常管理" },
+  "footer.open": { en: "Open-source L4 remote-operations incident database", zh: "开源 L4 远程运营事件数据库" },
 
   // Common
   "common.min": { en: "min", zh: "分钟" },

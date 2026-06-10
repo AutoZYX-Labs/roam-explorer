@@ -1,7 +1,7 @@
 {
   "name": "ROAM Explorer",
   "short_name": "ROAM",
-  "description": "L4+ Robotaxi Incident Database — Browse incidents, explore scenario taxonomy, and reference the three-layer architecture.",
+  "description": "L4+ Remote Operations Incident Database — Browse incidents, explore scenario taxonomy, and reference the three-layer architecture.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#faf9f5",

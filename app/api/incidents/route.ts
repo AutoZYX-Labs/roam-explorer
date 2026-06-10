@@ -68,7 +68,7 @@ export async function GET(request: NextRequest) {
         tier2_count: incidents.filter((i) => i.tier === 2).length,
         license: "Apache-2.0",
         source: "https://roam-explorer.autozyx.com",
-        citation: "Zhang, Y. (2026). ROAM: Remote Operations & Anomaly Management for L4 Robotaxi Fleets. https://roam.autozyx.com",
+        citation: "Zhang, Y. (2026). ROAM: Remote Operations & Anomaly Management for L4 Autonomous Mobility Remote Operations. https://roam.autozyx.com",
         generated_at: new Date().toISOString(),
       },
       incidents,

@@ -7,14 +7,14 @@ import { I18nProvider } from "@/lib/i18n";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://roam-explorer.autozyx.com"),
-  title: "ROAM Explorer | Robotaxi 运营异常事件库",
+  title: "ROAM Explorer | L4 远程运营异常事件库",
   description:
-    "ROAM 开源数据库的中文优先浏览器，覆盖 L4 Robotaxi 运营异常事件、场景分类体系与参考架构。",
+    "ROAM 开源数据库的中文优先浏览器，覆盖 L4 自动驾驶远程运营异常事件、场景分类体系与参考架构。",
   manifest: "/manifest.json",
   openGraph: {
-    title: "ROAM Explorer | Robotaxi 运营异常事件库",
+    title: "ROAM Explorer | L4 远程运营异常事件库",
     description:
-      "ROAM 开源数据库的中文优先浏览器，覆盖 L4 Robotaxi 运营异常事件、场景分类体系与参考架构。",
+      "ROAM 开源数据库的中文优先浏览器，覆盖 L4 自动驾驶远程运营异常事件、场景分类体系与参考架构。",
     url: "https://roam-explorer.autozyx.com/",
     siteName: "ROAM Explorer",
     images: [
@@ -27,9 +27,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "ROAM Explorer | Robotaxi 运营异常事件库",
+    title: "ROAM Explorer | L4 远程运营异常事件库",
     description:
-      "ROAM 开源数据库的中文优先浏览器，覆盖 L4 Robotaxi 运营异常事件、场景分类体系与参考架构。",
+      "ROAM 开源数据库的中文优先浏览器，覆盖 L4 自动驾驶远程运营异常事件、场景分类体系与参考架构。",
     images: ["https://roam.autozyx.com/assets/logo.png"],
   },
   appleWebApp: {

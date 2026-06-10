@@ -34,7 +34,7 @@ CN: ${inc.description_cn?.trim().substring(0, 300) || "(no Chinese translation)"
     (k) => `KPI ${k.number}: ${k.name} — ${k.definition} Target: ${k.target}`
   ).join("\n");
 
-  return `You are ROAM Explorer's AI assistant — an expert on L4 robotaxi remote operations incidents and safety.
+  return `You are ROAM Explorer's AI assistant — an expert on L4 remote operations incidents and safety.
 
 CRITICAL LANGUAGE RULE:
 - If the user asks in Chinese, respond ENTIRELY in Chinese. Use the CN fields from the database.

@@ -13,8 +13,8 @@ export default function AboutPage() {
       </h1>
       <p className="text-[var(--muted)] mb-8">
         {zh
-          ? "ROAM（Remote Operations & Anomaly Management）是一个面向 L4 Robotaxi 远程运营异常的开源知识体系，由张玉新（吉林大学汽车工程学院副教授）发起，2026 年 4 月公开。"
-          : "ROAM (Remote Operations & Anomaly Management) is an open-source knowledge framework for L4 robotaxi remote operations anomalies, initiated by Prof. Zhang Yuxin (Jilin University) and released publicly in April 2026."}
+          ? "ROAM（Remote Operations & Anomaly Management）是一个面向 L4 自动驾驶远程运营异常的开源知识体系，由张玉新（吉林大学汽车工程学院副教授）发起，2026 年 4 月公开。"
+          : "ROAM (Remote Operations & Anomaly Management) is an open-source knowledge framework for L4 remote-operations anomalies, initiated by Prof. Zhang Yuxin (Jilin University) and released publicly in April 2026."}
       </p>
 
       <section className="mb-10">
@@ -152,7 +152,7 @@ export default function AboutPage() {
         <pre className="rounded-lg bg-[var(--badge-bg)] p-4 text-xs overflow-x-auto font-mono">
 {`@misc{zhang2026roam,
   title={ROAM: Remote Operations & Anomaly Management
-         for L4 Robotaxi Fleets},
+         for L4 Autonomous Mobility Remote Operations},
   author={Zhang, Yuxin},
   year={2026},
   howpublished={\\url{https://roam.autozyx.com}},
